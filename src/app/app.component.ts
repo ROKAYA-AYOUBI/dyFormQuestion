@@ -2,9 +2,19 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+
+
+    <div>
+      <app-formspring ></app-formspring>
+    </div>
+  `,
 })
 export class AppComponent {
   title = 'dyForm';
 }
+/*
+  <div>
+    <app-registrationform ></app-registrationform>
+  </div>
+  */

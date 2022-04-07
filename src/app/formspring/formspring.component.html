@@ -1,0 +1,27 @@
+<div class="header color">
+  <h1>Question personnelle</h1>
+</div>
+<!-- Main Section Of Registration Form Start Here -->
+<section>
+
+    <form id="form" (ngSubmit)="Onsubmit()" [formGroup]="registrationForm">
+      <div class="col-md-12" *ngFor="let control of dynamicFormArray">
+        <div [ngSwitch]="control.type">
+
+            <div *ngSwitchCase="'input'">
+              <div class="col-md-4">
+                <label>{{control.label}}</label>
+              </div>
+              <div class="col-md-6">
+                <input type="text"  class="form-control">
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <button type="submit">save</button>
+      </div>
+    </form>
+
+
+</section>

@@ -1,0 +1,79 @@
+<div class="header color">
+  <h1>First form </h1>
+</div>
+<!-- Main Section Of Registration Form Start Here -->
+<section>
+
+  <form id="form" (ngSubmit)="Onsubmit()" [formGroup]="registrationForm">
+    <div class="row form">
+    <!-- Dynamic Control Binding -->
+      <div class="col-md-12" *ngFor="let control of dynamicFormArray">
+        <div class="header color">
+          <h1>{{control.Titre}} </h1>
+        </div>
+        <div [ngSwitch]="control.Type">
+
+        <div *ngSwitchCase="'input'">
+           <div class="col-md-4">
+              <label>{{control.Label}}</label>
+           </div>
+            <div class="col-md-6">
+              <input type="text"  [formControlName]="control.ID" class="form-control">
+
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'date'">
+            <div class="col-md-4">
+              <label>{{control.Label}}</label>
+            </div>
+            <div class="col-md-6">
+              <input type="date"  [formControlName]="control.ID"
+                      class="form-control">
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'radio'">
+            <div class="col-md-4">
+              <label>{{control.Label}}</label>
+            </div>
+
+            <div class="col-md-6">
+              <!-- [formControlName]="control.ID" -->
+              <label class="radio"  *ngFor="let val of control.Value.split(',')"   >
+                <input type="radio"  [formControlName]="control.ID" name="{{control.ID}}" value="{{val}}">
+                {{val}}
+              </label>
+              <!--
+                        <div *ngIf="registrationForm.get(control.ID).dirty || registrationForm.get(control.ID).touched">
+                          <small *ngIf="!registrationForm.get(control.ID).valid">
+                            {{control.Label}} is Requireds
+                          </small>
+                        </div>
+                -->
+                      </div>
+                  </div>
+
+                  <div *ngSwitchCase="'select'">
+                    <div class="col-md-4">
+                      <label>{{control.Label}}</label>
+                    </div>
+                    <div class="col-md-6">
+                      <select [formControlName]="control.ID"
+                               class="form-control">
+                          <option value="-1">Select</option>
+                        <option *ngFor="let val of control.Value.split(',')" value="{{val}}">{{val}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Dynamic Control Binding -->
+    </div>
+    <div class="col-md-6">
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+  <div class="col-md-12">{{registrationForm.value | json}}</div>
+</section>
+<!-- Main Section Of Registration Form End Here -->
